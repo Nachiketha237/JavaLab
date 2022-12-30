@@ -1,7 +1,7 @@
 import java.util.*;
 import java.util.UUID;
-class bank{
-    class Account{
+class Bank{
+    static class Account{
         protected  String Name;
         protected UUID accno;
         protected double balance;
@@ -17,7 +17,7 @@ class bank{
         }
       
      }
-     class Savings extends Account{
+   static  class Savings extends Account{
          private float interest=7;
          Savings(String Name,double balance){
             super(Name,balance);
@@ -36,7 +36,7 @@ class bank{
         
      }
       
-     class Current extends Accounts{
+     static class Current extends Account{
          private float minBalance=1000;
          private float serCharge=500;
          Current(String Name,double balance){
@@ -62,7 +62,8 @@ class bank{
 class Main {
     public static void main(String[] args){
      Scanner sc=new Scanner(System.in);
-     while(1)
+     boolean a=true;
+     while(a)
      {
         System.out.println("Welcome to HDFC Bank\n\n");
         System.out.println("1.Create Account\n2.Balance Enquiry\n3.Deposit\n4.Withdrawal\n5.Exit");
@@ -71,8 +72,8 @@ class Main {
             case 1:System.out.println("Enter the type of account you are interested in\n");
                    System.out.println("1.Savings Account\n2.Current Account\n\n");
                    int choice1=sc.nextInt();
-                   Current c=new Current();
-                   Savings s=new Savings();
+                   Bank.Current c=new Bank.Current();
+                   Bank.Savings s=new Bank.Savings();
                    switch(choice1){
                     case 1: 
                             System.out.println("Enter Your Name\n");
@@ -93,7 +94,7 @@ class Main {
                    break;
             case 2:             
                                 System.out.println("Enter your account number\n");
-                                UUID choice2=sc.nextUUID();
+                                int choice2=sc.nextInt();
                                 System.out.println("Enter your account type 1:Savings  and  2:Current\n");
                                 int choice3=sc.nextInt();
                                 if(choice3==1)
@@ -104,7 +105,7 @@ class Main {
 
 
             case 3:   System.out.println("Enter your account number\n");
-                      choice2=sc.nextUUID();
+                      choice2=sc.nextInt();
                       System.out.println("Enter your account type 1:Savings  and  2:Current\n");
                       choice3=sc.nextInt();
                       System.out.println("Enter the amount to be deposited");
@@ -116,7 +117,7 @@ class Main {
                        c.deposit(choice2,choice);
                        break;
             case 4:   System.out.println("Enter your account number\n");
-                       choice2=sc.nextUUID();
+                       choice2=sc.nextInt();
                        System.out.println("Enter your account type 1:Savings  and  2:Current\n");
                        choice3=sc.nextInt();
                        System.out.println("Enter the amount to be withdrawn");
@@ -127,9 +128,10 @@ class Main {
                        else
                         c.withdraw(choice2,choice);
                         break;
-            case 5: exit(0);
+            case 5: System.exit(0);;
         }
 
      }
+     sc(close);
     }
 }
